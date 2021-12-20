@@ -5,25 +5,24 @@ con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro. */
 
-function fetchDifficulty(){
+function fetchDifficulty(){ /* recupera la difficoltà desiderata */
     const difficulty= document.getElementById("difficulty").value;
     return difficulty;
 }
 
-function genField(n){
+function genField(n){ /* genera un campo di dimensioni n*n */
     let field = document.getElementById("play-field");
-    field.innerHTML = "";
+    field.innerHTML = ""; /* rimuove il contenuto precedente */
     for (let i=0; i<n;i++){
-        field.innerHTML += `<div class="row"></div>`;
+        field.innerHTML += `<div class="row"></div>`; /* crea n righe */
         let row = document.querySelectorAll(".row")[i];
-        for (let j=0; j<n;j++){
+        for (let j=0; j<n;j++){ /* su ogni riga crea n quadrati */
             row.innerHTML += `<div class="square" onclick="clickColor(event)">` + (i*n + j +1) + `</div>`;
         }
     }
 }
 
-function genBoard(difficulty){
-    console.log(difficulty)
+function genBoard(difficulty){ /* a seconda della difficoltà scelta crea un campo differente */
     console.log(difficulty == 1)
     if (difficulty == 1){
         genField(10);
@@ -40,6 +39,6 @@ function createGame(){
     genBoard(fetchDifficulty());  
 }
 
-function clickColor(event){
-    event.target.classList.add("click-color");
+function clickColor(event){ 
+    event.target.classList.add("click-color"); /* identifica il quadrato cliccato e lo colora */
 }
